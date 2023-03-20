@@ -78,6 +78,35 @@ class SignInPage extends StatelessWidget {
                                            
                                         },
                                       )),
+
+                                      Container(
+                                    //color: Colors.black,
+                                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                      alignment: Alignment.center,
+                                      child: ElevatedButton(
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 120,
+                                          child: Text("Войти анонимно")
+                                          ),
+                                        onPressed: () async {
+                                          await firebaseService.onAnonimLogin(
+                                            );
+                                          if(firebaseService.succesLogin)
+                                          //     email: emailController.text,
+                                          //     password: passController.text,
+                                          //     ))
+                                           {
+                                            firebaseService.succesLogin=false;
+                                               Navigator.pushNamed(context,"/AuthedPage");
+                                           }
+                                          
+                                            
+                                           
+                                        },
+                                      )),
+
+
                                       Container(
                                     //color: Colors.black,
                                     margin: EdgeInsets.fromLTRB(0, 10, 0, 20),

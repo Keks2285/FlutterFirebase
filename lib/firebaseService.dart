@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseService {
@@ -10,9 +9,26 @@ class FirebaseService {
 
   final auth = FirebaseAuth.instance;
   final currentUser = FirebaseAuth.instance.currentUser;
-   bool succesLogin =false;
+  bool succesLogin = false;
   onListenUser(void Function(User?)? doListen) {
     auth.authStateChanges().listen(doListen);
+  }
+
+  onAnonimLogin() async {
+    try {
+      final userCredential = await auth.signInAnonymously();
+      print("Signed in with temporary account.");
+      succesLogin=true;
+    } on FirebaseAuthException catch (e) {
+       succesLogin=false;
+      switch (e.code) {
+        case "operation-not-allowed":
+          print("Anonymous auth hasn't been enabled for this project.");
+          break;
+        default:
+          print("Unknown error.");
+      }
+    }
   }
 
   onLogin({
@@ -23,14 +39,14 @@ class FirebaseService {
       final credential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       print(credential);
-       succesLogin=true;
+      succesLogin = true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
-        succesLogin= false;
+        succesLogin = false;
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
-         succesLogin= false;
+        succesLogin = false;
       }
     }
   }
