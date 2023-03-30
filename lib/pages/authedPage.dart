@@ -29,14 +29,14 @@ class ProfilePageState extends State<ProfilePage> {
     users.where('email', isEqualTo: FirebaseAuth.instance.currentUser!.email).get().then(
       (QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc)async{
-        print(doc.id);
+        ///print(doc.id);
           final User? user = FirebaseAuth.instance.currentUser;
-          await user?.updatePassword(_newPasswordController.text);
-          await user?.updateEmail(_emailController.text);
+           await user?.updatePassword(_newPasswordController.text);
+           await user?.updateEmail(_emailController.text);
 
-          await FirebaseFirestore.instance.collection('users').doc(doc.id).update({
+           await FirebaseFirestore.instance.collection('users').doc(doc.id).update({
               'email':_emailController.text,
-              'password':_newPasswordController
+              'password':_newPasswordController.text
             }).catchError((onError)=>print(onError));
       });
     });
