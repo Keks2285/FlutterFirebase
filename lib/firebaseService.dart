@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseService {
   static final FirebaseService _singleton = FirebaseService._internal();
-
+  final FirebaseFirestore fireStore = FirebaseFirestore.instance;
   factory FirebaseService() => _singleton;
 
   FirebaseService._internal();
@@ -18,9 +19,9 @@ class FirebaseService {
     try {
       final userCredential = await auth.signInAnonymously();
       print("Signed in with temporary account.");
-      succesLogin=true;
+      succesLogin = true;
     } on FirebaseAuthException catch (e) {
-       succesLogin=false;
+      succesLogin = false;
       switch (e.code) {
         case "operation-not-allowed":
           print("Anonymous auth hasn't been enabled for this project.");
@@ -70,6 +71,19 @@ class FirebaseService {
     } catch (e) {
       print(e);
     }
+
+
+    ///fireStoreadd
+    final userAdd = fireStore.collection('users');
+    userAdd
+        .add(
+          {
+            'email': email,
+            'password': password,
+          },
+        )
+        .then((value) => print('Add user'))
+        .catchError((error) => print('Faild add: $error'));
   }
 
   logOut() async {

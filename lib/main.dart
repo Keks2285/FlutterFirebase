@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         //FinanceData.routeName: (context) => const FinanceData(),
         "/SignIn": (context) => SignInPage(),
         "/SignUp":  (context) => SignUpPage(),
-        "/AuthedPage":(context) => TaskListPage()
+        "/AuthedPage":(context) => ProfilePage()
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),
