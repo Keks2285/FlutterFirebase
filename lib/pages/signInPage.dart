@@ -71,7 +71,7 @@ class SignInPage extends StatelessWidget {
                                           //     ))
                                            {
                                             firebaseService.succesLogin=false;
-                                               Navigator.pushNamed(context,"/AuthedPage");
+                                               Navigator.pushNamed(context,"/ImagesPage");
                                            }
                                           
                                             
@@ -98,7 +98,7 @@ class SignInPage extends StatelessWidget {
                                           //     ))
                                            {
                                             firebaseService.succesLogin=false;
-                                               Navigator.pushNamed(context,"/AuthedPage");
+                                               Navigator.pushNamed(context,"/ImagesPage");
                                            }
                                           
                                             

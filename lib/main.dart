@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebaseauth/pages/authedPage.dart';
 import 'package:firebaseauth/pages/signInPage.dart';
 import 'package:firebaseauth/pages/signUpPage.dart';
+import 'package:firebaseauth/pages/imagesPage.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         //FinanceData.routeName: (context) => const FinanceData(),
         "/SignIn": (context) => SignInPage(),
         "/SignUp":  (context) => SignUpPage(),
-        "/AuthedPage":(context) => ProfilePage()
+        "/AuthedPage":(context) => ProfilePage(),
+        "/ImagesPage":(context)=>ImagesPage(title: "Firebase Storage",)
         //SignIn.routeName: (context) => const SignIn()
       },
       home:  SignInPage(),
